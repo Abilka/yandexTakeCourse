@@ -35,9 +35,9 @@ class Exel:
         self.all_amount_row = 0
 
     def create_course(self):
+        style = xlwt.XFStyle()
         for cur_name in value:
             for string in value[cur_name]:
-                style = xlwt.XFStyle()
                 if string['date'] == "Дата":
                     style.num_format_str = 'general'
                 else:
@@ -50,9 +50,8 @@ class Exel:
             self.col += 3
             self.row = 0
         for row in range(1, 11):
-            style = xlwt.XFStyle()
             style.num_format_str = '0.00'
-            self.ws.write(row, self.col, xlwt.Formula(f'$B{row+1}/$E{row+1}'), style)
+            self.ws.write(row, self.col, xlwt.Formula(f'$E{row+1}/$B{row+1}'), style)
         self.wb.save('Course.xls')
 
 
