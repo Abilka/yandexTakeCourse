@@ -47,9 +47,6 @@ class Exel:
                 self.all_amount_row = self.row
             self.col += 3
             self.row = 0
-        self.divison()
-
-    def divison(self):
         for row in range(1, 11):
             style = xlwt.XFStyle()
             style.num_format_str = '0.00'
