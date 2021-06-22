@@ -21,10 +21,9 @@ class Browser:
             course_line_info = course_line.find_elements_by_tag_name('div')
 
             if len(course_line_info) > 2:
-                if course_line_info[0].text != 'Дата':
-                    value[money_name].append({'date': course_line_info[0].text,
-                                                   'course': course_line_info[1].text,
-                                                   'change': course_line_info[2].text})
+                value[money_name].append({'date': course_line_info[0].text,
+                                               'course': course_line_info[1].text,
+                                               'change': course_line_info[2].text})
 
 
 class Exel:
@@ -39,7 +38,10 @@ class Exel:
         for cur_name in value:
             for string in value[cur_name]:
                 style = xlwt.XFStyle()
-                style.num_format_str = '[$R]#,##0.00'
+                if string['date'] == "Дата":
+                    style.num_format_str = 'default'
+                else:
+                    style.num_format_str = '[$R]#,##0.00'
                 self.ws.write(self.row, self.col, string["date"], style)
                 self.ws.write(self.row, self.col + 1, string["course"], style)
                 self.ws.write(self.row, self.col + 2, string["change"], style)
@@ -50,7 +52,7 @@ class Exel:
         for row in range(1, 11):
             style = xlwt.XFStyle()
             style.num_format_str = '0.00'
-            self.ws.write(row-1, self.col, xlwt.Formula(f'$B{row}/$E{row}'), style)
+            self.ws.write(row, self.col, xlwt.Formula(f'$B{row+1}/$E{row+1}'), style)
         self.wb.save('Course.xls')
 
 
