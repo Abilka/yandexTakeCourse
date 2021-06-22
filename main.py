@@ -22,7 +22,7 @@ class Browser:
 
             if len(course_line_info) > 2:
                 if course_line_info[0].text != 'Дата':
-                    value[self.money_name].append({'date': course_line_info[0].text,
+                    value[money_name].append({'date': course_line_info[0].text,
                                                    'course': course_line_info[1].text,
                                                    'change': course_line_info[2].text})
 
