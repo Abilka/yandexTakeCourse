@@ -45,9 +45,10 @@ def mail_send(filename: str, row_amount: int) -> None:
 
 def get_num_to_str(num: int) -> str:
     lastNum = num % 10
-    if lastNum == 1:
+    firstNum = num//10**(len(str(num))-1)
+    if lastNum == 1 and firstNum != 1:
         return "строка"
-    elif lastNum in [2, 4, 5]:
+    elif lastNum in [2, 3, 4, 5]:
         return "строки"
     else:
         return "строк"

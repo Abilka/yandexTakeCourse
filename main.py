@@ -39,7 +39,7 @@ class Exel:
             for string in value[cur_name]:
                 style = xlwt.XFStyle()
                 if string['date'] == "Дата":
-                    style.num_format_str = 'default'
+                    style.num_format_str = 'general'
                 else:
                     style.num_format_str = '[$R]#,##0.00'
                 self.ws.write(self.row, self.col, string["date"], style)
