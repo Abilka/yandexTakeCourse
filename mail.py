@@ -8,9 +8,6 @@ import time
 import configparser
 
 
-
-
-
 def mail_send(filename: str, row_amount: int) -> None:
     '''
     :param email: gmail почта

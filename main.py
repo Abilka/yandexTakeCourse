@@ -15,8 +15,7 @@ class Browser:
         self.driver.switch_to.window(self.driver.window_handles[-1])
         course = self.driver.find_element_by_xpath('//*[@class="news-stock-table__content"]')
 
-        self.money_name = money_name
-        value[self.money_name] = []
+        value[money_name] = []
 
         for course_line in course.find_elements_by_tag_name('div'):
             course_line_info = course_line.find_elements_by_tag_name('div')
@@ -61,11 +60,8 @@ class Exel:
 
 if __name__ == '__main__':
     value = {}
-    threading.Thread(target=Browser().take_course_yandex, args=(
-        'b-inline inline-stocks__item inline-stocks__item_id_2002 hint__item inline-stocks__part', 'dollar')).start()
-    Browser().take_course_yandex(
-        'b-inline inline-stocks__item inline-stocks__item_id_2000 hint__item inline-stocks__part',
-        'euro')
+    threading.Thread(target=Browser().take_course_yandex, args=('b-inline inline-stocks__item inline-stocks__item_id_2002 hint__item inline-stocks__part', 'dollar')).start()
+    Browser().take_course_yandex('b-inline inline-stocks__item inline-stocks__item_id_2000 hint__item inline-stocks__part','euro')
 
     courseFile = Exel()
     courseFile.create_course()
